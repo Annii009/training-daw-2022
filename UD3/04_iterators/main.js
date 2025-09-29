@@ -64,7 +64,8 @@ function rebels() {
 
 //devolver el numero de pilotos de una determinada fraccion
 function totalFaction(faction) {
-  console.log(pilots.filter(pilots => pilots.faction === faction).length);
+  let result = pilots.filter(pilots => pilots.faction === faction).length;
+  return result;
 }
 
 //totalFaction('Empire');
@@ -78,17 +79,20 @@ function avgYears(faction) {
 //console.log(avgYears('Empire'));
 
 
-//use console.log
-iterateSimple()
-iterateForEach()
+console.log('IDs:', mapIds());
+console.log('Pilotos rebeldes:', rebels());
+console.log('Total Rebels:', totalFaction('Rebels'));
+console.log('Media años Rebels:', avgYears('Rebels'));
+console.log('Media años Empire:', avgYears('Empire'));
+
 try {
-  //assert.deepStrictEqual(mapIds(), [2,8,40,66])
+  assert.deepStrictEqual(mapIds(), [2,8,40,66])
   assert.deepStrictEqual(rebels(), [pilots[0], pilots[3]])
 
-  //assert.deepStrictEqual(totalFaction('Rebels'), 2)
+  assert.deepStrictEqual(totalFaction('Rebels'), 2)
 
-  //assert.deepStrictEqual(avgYears('Rebels'), 22.5)
-  //assert.deepStrictEqual(avgYears('Empire'), 25)
+  assert.deepStrictEqual(avgYears('Rebels'), 22.5)
+  assert.deepStrictEqual(avgYears('Empire'), 25)
 } catch (error) {
   console.error(error)
 }
