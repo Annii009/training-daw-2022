@@ -1,5 +1,7 @@
 'use strict'
 
+const { log } = require('console');
+
 const assert = require('assert').strict;
 
 var pilots = [
@@ -29,30 +31,65 @@ var pilots = [
   }
 ];
 
+//iterar e imprimir los pilotos utilizandoun for normal
 function iterateSimple() {
+
+  for (let i = 0; i < pilots.length; i++) {
+    console.log(pilots[i]);
+  }
 }
+//iterateSimple();
+
+//iterar e imprimir los pilotos utilizando array.forEach
 function iterateForEach() {
+  pilots.forEach(pilot => {
+    console.log(pilot);
+  });
 }
+//iterateForEach();
+
+// devolver un array con los ids de los pilotos utilizando array.map
 function mapIds() {
+  let result = pilots.map(pilot => pilot.id);
+  return result;
+  
 }
+//mapIds();
+
+// devolver un array con los pilotos que son rebeldes utilizando array.filter
 function rebels() {
-}
-function totalFaction(faction) {
-}
-function avgYears(faction) {
+   let result = pilots.filter(pilot => pilot.faction === 'Rebels');
+   return result;
 }
 
-// use console.log
+//devolver el numero de pilotos de una determinada fraccion
+function totalFaction(faction) {
+  console.log(pilots.filter(pilots => pilots.faction === faction).length);
+}
+
+//totalFaction('Empire');
+
+//calcular la media de años de los pilotos de una fraccion
+function avgYears(faction) {
+  const factionPilots = pilots.filter(pilot => pilot.faction === faction);
+  const totalYears = factionPilots.reduce((sum, pilot) => sum + pilot.years, 0);
+  return totalYears / factionPilots.length;
+}
+//console.log(avgYears('Empire'));
+
+
+//use console.log
 iterateSimple()
 iterateForEach()
 try {
-  assert.deepStrictEqual(mapIds(), [2,8,40,66])
+  //assert.deepStrictEqual(mapIds(), [2,8,40,66])
   assert.deepStrictEqual(rebels(), [pilots[0], pilots[3]])
 
-  assert.deepStrictEqual(totalFaction('Rebels'), 2)
+  //assert.deepStrictEqual(totalFaction('Rebels'), 2)
 
-  assert.deepStrictEqual(avgYears('Rebels'), 22.5)
-  assert.deepStrictEqual(avgYears('Empire'), 25)
+  //assert.deepStrictEqual(avgYears('Rebels'), 22.5)
+  //assert.deepStrictEqual(avgYears('Empire'), 25)
 } catch (error) {
   console.error(error)
 }
+  

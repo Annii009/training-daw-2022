@@ -1,4 +1,4 @@
-'use strict'
+/*'use strict'
 
 var x = 10
 var test = 5
@@ -14,7 +14,7 @@ function shadow() {
 
 shadow()
 console.log('valor de x ' + x)
-
+*/
 
 function scopes() {
     var i = 0;
